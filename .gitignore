@@ -1,5 +1,7 @@
 target/
 src/test/
+/log4j2_debug.log
+/log4j2_error.log
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

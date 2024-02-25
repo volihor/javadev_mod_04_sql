@@ -1,34 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--        https://www.baeldung.com/java-logging-intro-->
-
-<!--<Configuration status="debug" name="log4j2_main" packages="">-->
-<Configuration status="warn">
+<!--<Configuration>-->
+<!--<Configuration status="debug" name="log4j2_debug.log" packages="">-->
+<Configuration status="WARN">
 
     <Appenders>
         # Console appender
-        <Console name="stdout" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n"/>
+        <Console name="stdout-out" target="SYSTEM_OUT">
+            # Pattern of log message for file appender
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t]%-5p %m%n"/>
         </Console>
 
-        <!--
         # File appender
-        <File name="fout" fileName="baeldung.log" append="true">
+        <File name="debug-log" fileName="log4j2_debug.log" append="true">
             <PatternLayout>
-                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
+                # Pattern of log message for file appender
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %m%n</Pattern>
             </PatternLayout>
         </File>
-        -->
+        <File name="error-log" fileName="log4j2_error.log" append="true">
+            <PatternLayout>
+                # Pattern of log message for file appender
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %m%n</Pattern>
+            </PatternLayout>
+        </File>
 
     </Appenders>
-
+<!--Trace < Debug < Info < Warn < Error < 0Fatal-->
     <Loggers>
-        <Root level="error">
-            <AppenderRef ref="STDOUT"/>
-        </Root>
+        <Logger name="global.goit" level="Debug">
+            <AppenderRef ref="error-log" level="Error"/>
+            <AppenderRef ref="debug-log" level="Debug"/>
+<!--            <AppenderRef ref="stdout-out" level="Info"/>-->
+        </Logger>
+        <Logger name="global.goit" level="Debug" >
+            <AppenderRef ref="error-log" level="Error"/>
+            <AppenderRef ref="debug-log" level="Debug"/>
+<!--            <AppenderRef ref="stdout-out" level="Info"/>-->
+        </Logger>
 
-        <Root level="INFO">
-            <AppenderRef ref="stdout" />
-            <AppenderRef ref="fout"/>
+        <Root level="Info">
+            <AppenderRef ref="stdout-out"/>
         </Root>
     </Loggers>
 
