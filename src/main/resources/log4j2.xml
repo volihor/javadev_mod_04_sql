@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--        https://www.baeldung.com/java-logging-intro-->
+
+<!--<Configuration status="debug" name="log4j2_main" packages="">-->
+<Configuration status="warn">
+
+    <Appenders>
+        # Console appender
+        <Console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n"/>
+        </Console>
+
+        <!--
+        # File appender
+        <File name="fout" fileName="baeldung.log" append="true">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        -->
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="error">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+
+        <Root level="INFO">
+            <AppenderRef ref="stdout" />
+            <AppenderRef ref="fout"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
+
+        <!--
+
+                <?xml version="1.0" encoding="UTF-8"?>
+                &lt;!&ndash; Extra logging related to initialization of Log4j.
+                 Set to debug or trace if log4j initialization is failing. &ndash;&gt;
+        <Configuration status="warn">
+        <Appenders>
+            &lt;!&ndash; Console appender configuration &ndash;&gt;
+            <Console name="console" target="SYSTEM_OUT">
+                <PatternLayout
+                        pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"/>
+            </Console>
+        </Appenders>
+        <Loggers>
+            &lt;!&ndash; Root logger referring to console appender &ndash;&gt;
+            <Root level="info" additivity="false">
+                <AppenderRef ref="console"/>
+            </Root>
+        </Loggers>
+        </Configuration>
+
+        -->
